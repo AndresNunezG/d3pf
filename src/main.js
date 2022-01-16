@@ -1,6 +1,8 @@
 import '@babel/polyfill'
 import 'mutationobserver-shim'
-import './plugins/bootstrap-vue'
+
+import './plugins/BootstrapVue'
+import './plugins/FontAwesome'
 
 import Vue from 'vue'
 import App from './App.vue'
@@ -8,25 +10,6 @@ import router from './router'
 import store from './store'
 
 import './assets/css/main.styl'
-
-import { library } from '@fortawesome/fontawesome-svg-core'
-import { faSkull, faCrown, faDungeon, faHatWizard, faHammer, faGem } from '@fortawesome/free-solid-svg-icons'
-import { faVuejs, faBootstrap, faFontAwesome, faGithub, faBattleNet } from '@fortawesome/free-brands-svg-icons'
-import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
-library.add(
-  faSkull,
-  faCrown,
-  faDungeon,
-  faHatWizard,
-  faHammer,
-  faGem,
-  faVuejs,
-  faBootstrap,
-  faFontAwesome,
-  faGithub,
-  faBattleNet
-)
-Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.config.productionTip = false
 
