@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pt-4 mt-5 border-top">
         <h1>Heroes List</h1>
         <b-table
           dark
@@ -17,7 +17,7 @@
             <HeroClassLevel :hero="data.item"/>
           </template>
           <template v-slot:cell(kills)="data">
-            <span>{{ data.item.kills.elites }}</span>
+            <span>{{ data.item.kills.elites | formatNumber }}</span>
           </template>
         </b-table>
     </div>
@@ -26,9 +26,13 @@
 <script>
 import HeroIco from './HeroIco.vue'
 import HeroClassLevel from './HeroClassLevel.vue'
+import { formatNumber } from '@/filters/numeral.js'
 
 export default {
   name: 'HeroesList',
+  filters: {
+    formatNumber
+  },
   components: {
     HeroIco,
     HeroClassLevel
