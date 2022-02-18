@@ -1,19 +1,23 @@
 <template>
-    <div>
-        <h1>Hero view</h1>
-        <BaseLoading />
+    <div class="hero-view">
+        <BaseLoading v-if="isLoadingHero"/>
+        <HeroDetailHeader v-if="hero" :detail="detailHeader"/>
     </div>
 </template>
 
 <script>
 import setError from '@/mixins/setError'
 import BaseLoading from '@/components/BaseLoading'
+import HeroDetailHeader from './HeroDetailHeader.vue'
 import { getApiHero, getApiDetailedHeroItems } from '@/api/search'
 
 export default {
   name: 'HeroView',
   mixins: [setError],
-  components: { BaseLoading },
+  components: {
+    BaseLoading,
+    HeroDetailHeader
+  },
   data () {
     return {
       isLoadingHero: false,
@@ -22,7 +26,33 @@ export default {
       items: null
     }
   },
-  computed: {},
+  computed: {
+    detailHeader () {
+      const {
+        name,
+        class: classSlug,
+        gender,
+        level,
+        hardcore,
+        seasonal,
+        paragonLevel,
+        alive,
+        seasonCreated
+      } = this.hero
+
+      return {
+        name,
+        classSlug,
+        gender,
+        level,
+        hardcore,
+        seasonal,
+        paragonLevel,
+        alive,
+        seasonCreated
+      }
+    }
+  },
   created () {
     this.isLoadingHero = true
     this.isLoadingItems = true
@@ -42,7 +72,7 @@ export default {
           errObj.data = err.response.data
           errObj.status = err.response.status
         }
-        this.setApiErr(errObj)
+        this.setApiError(errObj)
         this.$router.push({ name: 'Error' })
       })
       .finally(() => {
@@ -59,7 +89,7 @@ export default {
           routeParams: this.$route.params,
           message: err.message
         }
-        this.setApiErr(errObj)
+        this.setApiError(errObj)
       })
       .finally(() => {
         this.isLoadingItems = false

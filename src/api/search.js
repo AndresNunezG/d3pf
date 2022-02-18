@@ -35,7 +35,7 @@ function getApiAccount ({ region, account }) {
  */
 function getApiHero ({ region, account, heroId }) {
   const resource = `d3/profile/${account}/hero/${heroId}`
-  const API_URL = `${protocol}/${region}/${host}/${resource}`
+  const API_URL = `${protocol}${region}${host}${resource}`
   const locale = locals[region]
 
   const params = {
@@ -56,7 +56,7 @@ function getApiHero ({ region, account, heroId }) {
  */
 function getApiDetailedHeroItems ({ region, account, heroId }) {
   const resource = `d3/profile/${account}/hero/${heroId}/items`
-  const API_URL = `${protocol}/${region}${host}${resource}`
+  const API_URL = `${protocol}${region}${host}${resource}`
   const locale = locals[region]
 
   const params = {
