@@ -2,6 +2,19 @@
     <div class="hero-view">
         <BaseLoading v-if="isLoadingHero"/>
         <HeroDetailHeader v-if="hero" :detail="detailHeader"/>
+
+        <b-row>
+          <b-col md="12" lg="8" order-lg="2">
+            <BaseLoading v-if="isLoadingItems"/>
+            <!-- <HeroItems v-if="items" :items="items"/> -->
+          </b-col>
+          <b-col md="12" lg="4" order-lg="1">
+            <template>
+              <HeroAttributes :attributes="detailStats"/>
+              <HeroSkills :skills="hero.skills"/>
+            </template>
+          </b-col>
+        </b-row>
     </div>
 </template>
 
@@ -9,6 +22,9 @@
 import setError from '@/mixins/setError'
 import BaseLoading from '@/components/BaseLoading'
 import HeroDetailHeader from './HeroDetailHeader.vue'
+import HeroAttributes from './HeroAttributes/Index.vue'
+import HeroSkills from './HeroSkills/Index.vue'
+// import HeroItems from './HeroItems/Index.vue'
 import { getApiHero, getApiDetailedHeroItems } from '@/api/search'
 
 export default {
@@ -16,7 +32,10 @@ export default {
   mixins: [setError],
   components: {
     BaseLoading,
-    HeroDetailHeader
+    HeroDetailHeader,
+    HeroAttributes,
+    HeroSkills
+    // HeroItems
   },
   data () {
     return {
@@ -51,6 +70,9 @@ export default {
         alive,
         seasonCreated
       }
+    },
+    detailStats () {
+      return { ...this.hero.stats, classSlug: this.hero.class }
     }
   },
   created () {
