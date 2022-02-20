@@ -9,7 +9,8 @@
             <HeroItems v-if="items" :items="items"/>
           </b-col>
           <b-col md="12" lg="4" order-lg="1">
-            <template>
+            <BaseLoading v-if="isLoadingHero"/>
+            <template v-else>
               <HeroAttributes :attributes="detailStats"/>
               <HeroSkills :skills="hero.skills"/>
             </template>
