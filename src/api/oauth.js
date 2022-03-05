@@ -1,7 +1,7 @@
 import { post } from 'axios'
 
-const clientId = '0fb069ca7fda4d3aa41ab91168d95af6'
-const clientSecret = 'o00imH75OGxDU5TfL96vgXPnRlCeFozg'
+const clientId = process.env.VUE_APP_CLIENT_ID
+const clientSecret = process.env.VUE_APP_CLIENT_SECRET
 
 const region = 'eu'
 

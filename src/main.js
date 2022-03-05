@@ -9,7 +9,11 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+// styles
 import './assets/css/main.styl'
+
+// directives
+import './directives'
 
 Vue.config.productionTip = false
 
